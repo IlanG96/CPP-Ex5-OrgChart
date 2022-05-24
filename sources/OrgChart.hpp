@@ -22,7 +22,7 @@ class Node
             std::string* getrole_p();
             std::vector<Node*> &get_subordinate(){return subordinate;}
             int size()const{return this->role_name.size();}
-            //********************
+            //********************/
 
             /**
              * @brief Setters
@@ -31,7 +31,7 @@ class Node
              */
             void setlevel(const int level){this->node_level=level;}
             void setrole(const std::string &role){this->role_name=role;}
-            //*************
+            //*************/
 
             /**
              * @brief Function that find the role you are searching for in the tree
@@ -42,7 +42,7 @@ class Node
             Node* Find(const std::string &role);
 
     };
-
+//**********************************************************************
 
 class OrgChart
 {
@@ -63,7 +63,7 @@ class OrgChart
         Iterator(uint ind, std::vector<Node*> &order);
         Iterator(Iterator &it2);
         ~Iterator(){}
-        Iterator(Iterator &&) = default; // move constructor
+        Iterator(Iterator &&) noexcept; // move constructor
         /***************************************/
         
         /**
@@ -78,7 +78,7 @@ class OrgChart
         bool operator == (Iterator const &it2) const;
         bool operator!=(const Iterator& other)const;
         Iterator &operator = (Iterator const &it2);
-        Iterator& operator=(Iterator&&) = default;// move assigemnt operator
+        Iterator& operator=(Iterator&&) noexcept;// move assigemnt operator
         /************************************/
 
         /**
@@ -92,8 +92,8 @@ class OrgChart
 
 private:
     Node * head;
-        std::vector<Node*> level_or_rev_list;
-        std::vector<Node*> pre_list;
+    std::vector<Node*> level_or_rev_list;
+    std::vector<Node*> pre_list;
 public:
     /**
      * @brief Constructors
@@ -102,7 +102,7 @@ public:
     OrgChart(/* args */){head=nullptr;} //deafult 
     ~OrgChart(){} //destructor
     OrgChart(OrgChart &other); //copy
-    OrgChart(OrgChart &&) = default; // move constructor
+    OrgChart(OrgChart &&) noexcept; // move constructor
     //*******************************************/
 
     /**
@@ -128,7 +128,7 @@ public:
      * @brief Operators
      */
     OrgChart& operator=(OrgChart const&);
-    OrgChart& operator=(OrgChart&&) = default;// move assigemnt operator
+    OrgChart& operator=(OrgChart&&) noexcept;// move assigemnt operator
     friend std::ostream &operator<<(std::ostream &COUT, OrgChart& org);
 
     /**
